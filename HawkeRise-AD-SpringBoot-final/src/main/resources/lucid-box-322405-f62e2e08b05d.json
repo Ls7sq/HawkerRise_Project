@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lucid-box-322405",
+  "private_key_id": "f62e2e08b05d64417dac8cef2fdcd912ba9bf4a8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQClE+waItkHqSQn\n2EtzyHArXMHSLAhuIRfxwVRTI6W+d8oY1NyDyjJ4cId4Xw9wBNpApJA4ouLHWUvj\nmIhKG0RlO/9tFLyW3QNuiRlD4RUW0NeI4z4MDWGYVgjUTc7xWzBZTFZwIdGpE5Xv\ncPq9bgYVx2VvNGlytgEi91KMhWdjsXGFJPAOcxx/T5+I4Oe5QSyAdkLQtCNZ5jIp\n6XYcr+tH8PRJZssc0aS34XuWUmXG73RgfxzwVBLQCY4u2U9oe6E0Zhbe3R37K8Aq\nU+D2z4ZVxtaDOvo0qmAxrnluBQlcblCXGTsrNsSQekqSjsbmAna0ucfJeQ4QLAXV\nVISoXdZpAgMBAAECggEAEuD3ZHnNxkGCwAfNgT1QDrV5+RZOFII2YdCRWzy9bM34\nT+SwH2ZVZU7BP3PnqRD1AOWRFNkUBGZi9nFwTMFXjhhReuEfPEWkadTGDexE5CoY\nLDCI3Qn+ulREiDspypJ6Mgw36nUDrElwIUUTd+yIR59ZK2GcGaFU+fG9ABMVouHu\nKn+QaVT2mIelyzHjAOySPgAHE+J86xCFncwMJZwWcNDma9jW6Xrpv+kI2kkHKUr4\nP+MMg3KuSb73qHEhCuip7sGZr5WjPPht1NDHeXODUiBfHoIBxlwfZoCe8/bXoxea\nIJVXvHC08zlOGuanadrrVk3faI7Jh3bBFoFhgSTKzQKBgQDQIliGrw9kf/vnSNHP\np8CS6HUybEFobQ7pcm9aNkxM7r6swlbbkcmkvWij6aV3Qp2Exw6NMmxtLU6KIh+C\nFsNUU44BdvVUghUHdGewusI7LPw52JlooRebc44QUypLksWAvm67ngj0x+9MZV5K\nfUGZGZcCDwIsxukQ45Ej0NyglwKBgQDLCq9ZDK9PBNFedY7u/CtXNX0dyNkI0P0b\nEsDqn9lI2+Zx2wsPQ2CyCksvEa3fcW1hAKY1AZh7cDR2DH500cf7vkKIeLL822+A\nAM5cOELS8TIheDZgjMedv8ytq51x3GcoB/TG4Hh2rCaHTmW5f0A6KVIN4rGOp2uV\nb1+S5ZEg/wKBgFopZrwBfeOFZbRNYUZZXxzEwnAzYSpBhCIwxngH6YmyKrtf/Ixl\nXTqWKoxHHLzLCL2KFY2o+DtbUxiXq5qJDdir0WplA+W17DIshPaUEKvd0u2kHOCs\nWDOpHTOJM1tFm3UoCYQQ88RGEC3CA9S06gPOiBIGOmT3TeNZEXi4c7rFAoGACEJ1\nA6BaeVJu2fLaT6p+cNvCLTYAbjViNnm601CRXD9lznfkqUhKZLO6fz2u3woUMv/9\nwuY/t7XGzI6RjlsCUaFZv4d5cIPUs1ZVDrdTMJWTPn1PaPoRHL+yqdXzX7BhmeVI\n9dYn0FwMbTCpPrSIflUz+1CffHgfDkMrliQ0lS0CgYAY3wGgnT4HSC64/JaJkWdh\nuGivA/y9nsFM8LC83CsqyvF4k0F7DcWe06ladGkplcV1SoQH4No53+HRngYKgbeM\nvUJV9K8pf+f4wol5/pB55sRoyKIyVHwgj+veXtOSHAgBV8zWlr441iuwiFc156yf\nQiVT7xS2EzRMzQTnPvBNaQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "adteam5@lucid-box-322405.iam.gserviceaccount.com",
+  "client_id": "116745074829957114312",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/adteam5%40lucid-box-322405.iam.gserviceaccount.com"
+}

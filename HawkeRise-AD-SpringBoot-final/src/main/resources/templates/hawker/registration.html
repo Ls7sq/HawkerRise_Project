@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<title>Hawker Registration - HawkeRise</title>
+</head>
+<body>
+
+	<div>
+		<header th:insert="layout/navbar.html :: navbar1"></header>
+	</div>
+
+	<nav aria-label="breadcrumb" class="col-12 mt-3">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Register</li>
+		</ol>
+	</nav>
+
+	<div class="container-fluid vh-75 d-flex align-items-center col justify-content-center my-5">
+
+		<div id="accordion" class="col-6">
+		<form th:action="@{/hawker/completeRegistration}"
+					th:object="${newHawker}" method="POST" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" th:required="required" />
+			
+			<div class="card">
+				<div class="card-header">
+					<h6 data-toggle="collapse" href="#collapseOne">Step 1: Identify your stall</h6>
+				</div>
+				<div id="collapseOne" class="collapse show">
+					<div class="card-body mb-4 col-11">
+						Hawker Centre: 
+						<select th:field="*{centre.name}" class="form-control my-2" th:required="required">
+							<option th:each="centre:${centres}" th:value="${centre.name}" th:text="${centre.name}"></option>
+						</select> 
+						
+						Unit No.:
+						<div class="input-group my-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">#</span>
+							</div>
+							<input type="text" th:field="*{unitNumber}"
+								class="form-control" placeholder="Enter stall unit no."
+								th:required="required" th:errorClass="is-invalid">
+							<div th:if="${#fields.hasErrors('unitNumber')}"
+								th:errors="*{unitNumber}" class="invalid-feedback"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h6 class="collapsed card-link" data-toggle="collapse"
+						href="#collapseTwo">Step 2: Enter your stall details</h6>
+				</div>
+				<div id="collapseTwo" class="collapse">
+					<div class="card-body mb-4 col-11">
+						Stall Name: 
+						<input type="text" th:field="*{stallName}" class="form-control my-2" 
+							placeholder="Enter stall name" th:required="required">
+							
+						<hr>
+						<div>
+<!--							Photo: <input name="filePhoto" type="file" accept="image/png, image/jpeg" >-->
+							Photo: <input name="filePhoto" type="file" value="upload" id="menuButton" accept="image/png, image/jpeg">
+						</div>
+						<br>
+						
+						<hr>
+						Tags:
+						<p></p>
+						<div class="form-check" th:each="tag:${tags}">
+							<input type="checkbox" th:field="*{tags}" th:value="${tag.name}"
+								th:text="${tag.name}" class="mx-2" /><br />
+						</div>
+						<hr>
+							
+						Operating Hours (in 24-hour format):
+						<div class="form-inline my-2">
+							<input type="text" class="form-control col-5" 
+								pattern="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" th:field="*{operatingHours}" placeholder="HH:MM" 
+								th:required="required" th:errorClass="is-invalid" title="24-hour Format">
+									
+							<p class="mx-3">to</p>
+							  
+							<input type="text" class="form-control col-5" 
+								pattern="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" th:field="*{closeHours}" placeholder="HH:MM"
+								th:required="required" th:errorClass="is-invalid" title="24-hour Format">
+								
+							<div th:if="${#fields.hasErrors('operatingHours')}" 
+									th:errors="*{operatingHours}" class="invalid-feedback"></div>
+						</div>
+	
+						Status: 
+						<select th:field="*{status}" class="form-control my-2" th:required="required">
+							<option th:value="Open" th:text="Open"></option>
+							<option th:value="Closed" th:text="Closed"></option>
+						</select>
+						</div>
+					
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h6 class="collapsed card-link" data-toggle="collapse"
+						href="#collapseThree">Step 3: Enter your contact details</h6>
+				</div>
+				<div id="collapseThree" class="collapse">
+					<div class="card-body mb-4 col-11">
+						First Name: 
+						<input type="text" th:field="*{firstName}" class="form-control my-2" 
+							placeholder="Enter first name" th:required="required">
+							
+						Last Name: 
+						<input type="text" th:field="*{lastName}" class="form-control my-2"
+							placeholder="Enter last name" th:required="required">
+							
+						Contact Number: 
+						<input type="text" th:field="*{contactNumber}" class="form-control my-2" 
+							placeholder="Enter contact number" th:required="required">
+							
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h6 class="collapsed card-link" data-toggle="collapse"
+						href="#collapseFour">Step 4: Set up your account details</h6>
+				</div>
+				<div id="collapseFour" class="collapse">
+					<div class="card-body mb-4 col-11">
+						Username: 
+						<input type="text" th:field="*{userName}" class="form-control my-2"
+							placeholder="Enter username" th:required="required" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('userName')}"
+							th:errors="*{userName}" class="invalid-feedback"></div>
+	
+						Password: 
+						<input type="password" th:field="*{password}" class="form-control my-2" 
+							placeholder="Enter password" th:required="required">
+	
+						<button type="submit" class="btn btn-dark mt-4">Register</button>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		var firebaseConfig = {
+			apiKey: "AIzaSyDhs65fzozbMPK0WBbgZxgUTuREKNwwu54",
+			authDomain: "testing-firebase-64caa.firebaseapp.com",
+			databaseURL: "https://testing-firebase-64caa-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "testing-firebase-64caa",
+			storageBucket: "testing-firebase-64caa.appspot.com",
+			messagingSenderId: "775132689514",
+			appId: "1:775132689514:web:8fa3e865e5466f74280613",
+			measurementId: "G-4VWGWTM7DJ"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		var menuUploader = document.getElementById('menuUploader');
+		var menuButton = document.getElementById('menuButton');
+
+		menuButton.addEventListener('change', function (e){
+			//Get file
+			var file = e.target.files[0];
+
+			//Create a storage ref
+			var storageRef = firebase.storage().ref('images/' + file.name);
+
+			//Upload file
+			var task = storageRef.put(file);
+
+			//Update progress bar
+			task.on('state_changed',
+					function progress(snapshot){
+						var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) *100;
+						menuUploader.value = percentage;
+					},
+
+					function error(err){
+
+					})
+		})
+
+	</script>
+
+</body>
+</html>

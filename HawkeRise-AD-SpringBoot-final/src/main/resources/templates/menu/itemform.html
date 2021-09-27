@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<title>New Menu Item - HawkeRise</title>
+</head>
+<body>
+
+	<div>
+		<header th:insert="layout/navbar.html :: navbar3"></header>
+	</div>
+	
+	<nav aria-label="breadcrumb" class="col-12 mt-3">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/hawker/home">Home</a></li>
+			<li class="breadcrumb-item"><a href="/menu/list">What's On My Menu?</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Add</li>
+		</ol>
+	</nav>
+
+	<div class="container-fluid vh-75 d-flex align-items-center col justify-content-center my-5">
+		<div class="card col-6">
+			<div class="card-body mb-4 col-11">
+				<h4 class="card-title">Add Menu Item</h4>
+				<hr>
+
+				<form th:action="@{/menu/save}" th:object="${newMenu}" method="POST"
+					enctype="multipart/form-data">
+
+					<input type="hidden" th:field="*{id}" th:required="required" />
+
+					Name: <input type="text" name="mname" th:field="*{name}" class="form-control my-2" 
+						placeholder="Item Name" th:required="required">
+						
+					Description: <textarea name="mdesc" th:field="*{description}" class="form-control my-2" 
+						placeholder="Enter Description" th:required="required" rows="3"></textarea>
+						
+					Price($): <input name="mprice" type="number" th:field="*{price}" class="form-control my-2"
+						placeholder="4.50" th:required="required" min="0.05" step="0.05"> 
+						
+					Status: <select name="mstatus" th:field="*{status}" class="form-control my-2" th:required="required">
+						<option value="Available">Available</option>
+						<option value="Running Low">Running Low</option>
+						<option value="Out of Stock!">Out of Stock!</option>
+					</select>
+
+					<hr>
+
+					<div>
+						<progress th:value="0" max="100" id="menuUploader">0%</progress>
+						<br>
+						Photo: <input name="filePhoto" type="file" value="upload" id="menuButton" accept="image/png, image/jpeg">
+<!--						if file is named {table.JPG}, it will be saved to: https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2Ftable.JPG?alt=media-->
+					</div>
+
+					<div>
+<!--						Photo: <input name="filePhoto" type="file" accept="image/png, image/jpeg" >-->
+					</div>
+					<br>
+
+					<button type="submit" class="btn btn-info mt-4">Save</button>
+				</form>
+				<hr>
+				<a th:href="@{/menu/list}">Back to Menu</a>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		var firebaseConfig = {
+			apiKey: "AIzaSyDhs65fzozbMPK0WBbgZxgUTuREKNwwu54",
+			authDomain: "testing-firebase-64caa.firebaseapp.com",
+			databaseURL: "https://testing-firebase-64caa-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "testing-firebase-64caa",
+			storageBucket: "testing-firebase-64caa.appspot.com",
+			messagingSenderId: "775132689514",
+			appId: "1:775132689514:web:8fa3e865e5466f74280613",
+			measurementId: "G-4VWGWTM7DJ"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		var menuUploader = document.getElementById('menuUploader');
+		var menuButton = document.getElementById('menuButton');
+
+		menuButton.addEventListener('change', function (e){
+			//Get file
+			var file = e.target.files[0];
+
+			//Create a storage ref
+			var storageRef = firebase.storage().ref('images/' + file.name);
+
+			//Upload file
+			var task = storageRef.put(file);
+
+			//Update progress bar
+			task.on('state_changed',
+			function progress(snapshot){
+				var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) *100;
+				menuUploader.value = percentage;
+			},
+
+			function error(err){
+
+			})
+		})
+
+	</script>
+
+
+
+</body>
+</html>
